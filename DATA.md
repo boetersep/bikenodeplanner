@@ -11,7 +11,7 @@ psql rcn -c "create extension postgis"
 psql rcn -c "create extension pgrouting"
 echo "node rcn_ref text linear" > rcn_ref.style
 export PGPASS=rcn
-osm2pgsql nlrcn.osm --database rcn --password --latlong --style rcn_ref.style
+osm2pgsql nlrcn.osm --database rcn --latlong --style rcn_ref.style
 osm2pgrouting --f nlrcn.osm --dbname rcn --username rcn --clean --password rcn
 psql rcn -c "CREATE INDEX ways_osm_id_idx ON ways (osm_id)"
 psql rcn -c "CREATE INDEX planet_osm_id_idx ON planet_osm_point (osm_id)"
